@@ -7,9 +7,21 @@
 	</head>
 	
     <body>
-        <div class="wrapper">
-            <div class="list">
+        <div class="titles">
+            <div class="title left-side">
                 <h1>Groups</h1>
+            </div>
+            <div class="title center-side">
+                <h1>Questions</h1>
+            </div>
+            <div class="title right-side">
+                <h1>Progress</h1>
+            </div>
+        </div>
+
+        <div class="wrapper">
+            <div class="list content">
+
                 <details>
                     <summary>
                         <strong>Block A: Plants</strong> (4 Questions)
@@ -21,7 +33,7 @@
                         <li>Q4</li>
                     </ul>
                 </details>
-                <hr/>
+                <hr />
                 <details>
                     <summary>
                         <strong>Block B: Cells</strong> (4 Questions)
@@ -35,8 +47,8 @@
                 </details>
             </div>
 
-            <div class="main">
-                <h1>Questions</h1>
+            <div class="main content">
+
                 <h2 class="question">What is the mitochondria?</h2>
                 <p class="description">(A part of the cell)</p>
                 <div class="choices">
@@ -52,12 +64,28 @@
                 </div>
                 <button>See answer</button>
             </div>
-            
-            <div class="progress">
-                <h1>Progress</h1>
+
+            <div class="progress content">
+                <div class="counter">
+                    Questions completed: 12312
+                </div>
+                <div class="all-status">
+                    <details>
+                        <summary>Block A</summary>
+                        <div class="bar">
+                            <div per="100%"></div>
+                        </div>
+                    </details>
+                    <details>
+                        <summary>Block B</summary>
+                        <div class="bar">
+                            <div per="20%"></div>
+                        </div>
+                    </details>
+                </div>
             </div>
 
         </div>
-        <script src="logic.js"></script>
+        <script src="barFiller.js"></script>
     </body>
 </html>

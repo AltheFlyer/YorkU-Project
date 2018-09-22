@@ -2,36 +2,40 @@ body {
 	font-family: Calibri;
 }
 
-
+.titles {
+    display: flex;
+}
 
 .wrapper {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    height: 100%;
+    display: flex;
+}
+
+.title {
+    text-align: center;
+    flex: 1;
+}
+
+.content {
+    flex: 1;
 }
 
 .list {
-    grid-column: 1/2;
     background-color: lightgreen;
-    border-right: 10px solid rgb(115, 255, 251);
-    padding: 0px 10px 10px 10px;
+    padding: 10px 10px 10px 10px;
+    position: relative;
+    overflow: auto;
 }
 
 .list hr {
     border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-.list h1 {
-    text-align: center;
-}
-
-
 
 .main {
-    grid-column: 2/3;
     text-align: center;
     background-color: lightskyblue;
+    border-left: 1px solid rgb(115, 255, 251);
+    border-right: 1px solid rgb(115, 255, 251);
 }
 
 .choices {
@@ -39,18 +43,26 @@ body {
     padding-left: 20px;
 }
 
-hr {
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    margin: 0;
-}
-
 
 
 .progress {
-    grid-column: 3/4;
     background-color: lightgray;
+    padding: 10px 10px 10px 10px;
 }
 
-.progress h1 {
-    text-align: center;
+.progress .counter {
+    background-color: rgb(229, 229, 229);
+    padding: 3px;
+}
+
+.progress .bar {
+    background-color: rgb(229, 229, 229);
+    margin: 4px;
+    padding: 2px;
+    height: 20px;
+}
+
+.progress .bar>div {
+    background-color: lightgreen;
+    height: 20px;
 }
