@@ -14,5 +14,9 @@ function addGroup() {
 function addQuestion() {
     console.log(questionEditor.querySelector("input[name='question']").value);
     console.log(questionEditor.querySelector("input[name='desc']").value);
-    console.log(questionEditor.querySelector("select").value)
+    console.log(questionEditor.querySelector("select").value);
+    var ops = questionEditor.querySelectorAll("input[name='option']");
+    for (var i = 0; i < 5; ++i) {
+        console.log(ops[i].value);
+    }
 }

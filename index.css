@@ -80,10 +80,15 @@ body {
 
 
 
+.editor {
+   flex: 1;
+}
+
 .editor input {
     margin-top: 4px;
     margin-bottom: 4px;
 }
+
 .editor select {
     margin-top: 4px;
     margin-bottom: 4px;
