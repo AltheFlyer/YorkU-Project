@@ -1,3 +1,56 @@
 body {
-	
+	font-family: Calibri;
+}
+
+
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    height: 100%;
+}
+
+.list {
+    grid-column: 1/2;
+    background-color: lightgreen;
+    border-right: 10px solid rgb(115, 255, 251);
+    padding: 0px 10px 10px 10px;
+}
+
+.list hr {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.list h1 {
+    text-align: center;
+}
+
+
+
+.main {
+    grid-column: 2/3;
+    text-align: center;
+    background-color: lightskyblue;
+}
+
+.choices {
+    text-align: left;
+    padding-left: 20px;
+}
+
+hr {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    margin: 0;
+}
+
+
+
+.progress {
+    grid-column: 3/4;
+    background-color: lightgray;
+}
+
+.progress h1 {
+    text-align: center;
 }
