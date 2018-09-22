@@ -11,7 +11,7 @@ var sort_a = []; //Array to sort using priority queue
 
 var y  = 0;
 while(y < 10){ //Getting the terms, y value is to be changed
-	dict[y] = new terms(10-y, y, "term"+y, "def"+y);
+  dict[y] = new terms(10-y, y, "term"+y, "def"+y);
   sort_a[y] = dict[y];
   y++;
 }
