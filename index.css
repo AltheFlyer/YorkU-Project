@@ -1,12 +1,23 @@
 body {
-	font-family: Calibri;
+    font-family: Calibri;
+}
+
+.mass-wrapper {
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto, auto, auto;
 }
 
 .titles {
+    grid-column: 1/4;
+    grid-row: 1;
     display: flex;
 }
 
 .wrapper {
+    grid-column: 1/4;
+    grid-row: 2;
     display: flex;
 }
 
@@ -17,11 +28,12 @@ body {
 
 .content {
     flex: 1;
+    padding: 10px 10px 10px 10px;
 }
 
 .list {
     background-color: lightgreen;
-    padding: 10px 10px 10px 10px;
+
     position: relative;
     overflow: auto;
 }
@@ -47,7 +59,6 @@ body {
 
 .progress {
     background-color: lightgray;
-    padding: 10px 10px 10px 10px;
 }
 
 .progress .counter {
@@ -65,4 +76,15 @@ body {
 .progress .bar>div {
     background-color: lightgreen;
     height: 20px;
+}
+
+
+
+.editor input {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+.editor select {
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
