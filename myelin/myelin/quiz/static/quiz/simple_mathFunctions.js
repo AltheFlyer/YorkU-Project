@@ -67,6 +67,12 @@ dict[0] = new terms(2, "What is 5 * 8?", "5 * 8 = 40", 3, ["5", "8", "13", "40",
 sort_a[0] = new terms(2, "What is 5 * 8?", "5 * 8 = 40", 3, ["5", "8", "13", "40", "25"])
 dict[1] = new terms(2, "What is 5% of 40?", "5% of 40 is 2", 1, ["5", "2", "8", "10", "4"])
 sort_a[1] = new terms(2, "What is 5% of 40?", "5% of 40 is 2", 1, ["5", "2", "8", "10", "4"])
+dict[2] = new terms(2, "What is 2^5?", "2^5 = 32", 0, ["32", "2", "8", "16", "4"])
+sort_a[2] = new terms(2, "What is 2^5?", "2^5 = 32", 0, ["32", "2", "8", "16", "4"])
+dict[3] = new terms(2, "What is 14 * 9?", "14 * 9 = 126", 4, ["140", "70", "90", "144", "126"])
+sort_a[3] = new terms(2, "What is 14 * 9?", "14 * 9 = 126", 4, ["140", "70", "90", "144", "126"])
+dict[3] = new terms(2, "What is one third of 936?", "936 / 3 = 312", 2, ["300", "309", "312", "336", "393"])
+sort_a[3] = new terms(2, "What is one third of 936?", "936 / 3 = 312", 2, ["300", "309", "312", "336", "393"])
 
 function terms(success, name, definition, correct, answer){ 
   this.scs = success; //Out of 100
