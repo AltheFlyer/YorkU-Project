@@ -16,10 +16,6 @@ var counter = document.querySelector(".counter");
 var radio = document.querySelectorAll("[name='answer']");
 var radioText = document.querySelectorAll(".radio");
 
-var dict = []; //Always stays the same order. String-term key
-var sort_a = []; //Integer key. Updated sorted array
-var groups = [];
-
 groupSubmit.addEventListener("click", addGroup);
 questionSubmit.addEventListener("click", addQuestion);
 input.addEventListener("click", incrementCount);
@@ -28,13 +24,15 @@ input2.addEventListener("click", updateQuestion);
 function right(name) { //Updating the success rate when the user gets a problem right
     var i;
 
-    if (groups[dict[name].group] == undefined) alert("UN");
-    for (i = 0; i < groups[dict[name].group].length; i++) {
-        //alert(i);
-        dict[groups[dict[name].group][i]].scs = Math.min(100, dict[groups[dict[name].group][i]].scs + 2);
+    dict[name].scs += 2;
+    if (groups[dict[name].group] == undefined) {
 
+    } else {
+        for (i = 0, len = groups[dict[name].group].length; i < len; i++) {
+            //alert(i);
+            dict[groups[dict[name].group][i]].scs = Math.min(100, dict[groups[dict[name].group][i]].scs + 2);
+        }
     }
-
     sort_a.splice(0, 1); //deleting element from array that got right
 
     sort_a.sort(function cmp(a, b) { //Sort sorted array
@@ -47,6 +45,7 @@ function right(name) { //Updating the success rate when the user gets a problem 
 
 function wrong(name) { //Decreasing the success rate when the user gets a problem wrong
     var i;
+    dict[name].scs -= 2;
     for (i = 0; i < groups[name].length; i++) {
         dict[groups[name][i]].scs = Math.max(0, dict[groups[name][i]].scs - 2);
     }
@@ -97,6 +96,13 @@ function updateQuestion() {
 function c(a) {
     console.log(a);
 }
+
+var dict = []; //Always stays the same order. String-term key
+var sort_a = []; //Integer key. Updated sorted array
+var groups = [];
+
+dict["1+1="] = new terms(2, "1+1=", "2", 1, ["1", "2", "3", "4", "5"], "Block A");
+sort_a[0] = new terms(2, "1+1=", "2", 1, ["1", "2", "3", "4", "5"], "Block A");
 
 function terms(success, name, definition, correct, answer, group) {
     this.scs = success; //Out of 100. 100 is highest success rate, 0 is lowest
