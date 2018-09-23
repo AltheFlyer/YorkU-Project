@@ -16,41 +16,43 @@ var counter = document.querySelector(".counter");
 var radio = document.querySelectorAll("[name='answer']");
 var radioText = document.querySelectorAll(".radio");
 
+var dict = []; //Always stays the same order. String-term key
+var sort_a = []; //Integer key. Updated sorted array
+var groups = [];
+
 groupSubmit.addEventListener("click", addGroup);
 questionSubmit.addEventListener("click", addQuestion);
 input.addEventListener("click", incrementCount);
 input2.addEventListener("click", updateQuestion);
 
-function right(name){ //Updating the success rate when the user gets a problem right
-  var i;
+function right(name) { //Updating the success rate when the user gets a problem right
+    var i;
 
-  dict[name].scs += 2;
-	if(groups[dict[name].group]==undefined) alert("UN");
-  for(i=0; i<groups[dict[name].group].length; i++){
-	//alert(i);
-    dict[groups[dict[name].group][i]].scs = Math.min(100, dict[groups[dict[name].group][i]].scs+2);
+    if (groups[dict[name].group] == undefined) alert("UN");
+    for (i = 0; i < groups[dict[name].group].length; i++) {
+        //alert(i);
+        dict[groups[dict[name].group][i]].scs = Math.min(100, dict[groups[dict[name].group][i]].scs + 2);
 
-  }
+    }
 
-  sort_a.splice(0, 1); //deleting element from array that got right
+    sort_a.splice(0, 1); //deleting element from array that got right
 
-  sort_a.sort(function cmp(a, b){ //Sort sorted array
+    sort_a.sort(function cmp(a, b) { //Sort sorted array
 
-    return a.scs-b.scs;0
+        return a.scs - b.scs; 0
 
-  });
+    });
 
 }
 
-function wrong(name){ //Decreasing the success rate when the user gets a problem wrong 
-  var i; //TO BE FIXED
-  dict[name].scs -= 2;
-  for(i=0; i<groups[name].length; i++){
-    dict[groups[name][i]].scs = Math.max(0, dict[groups[name][i]].scs-2);
-  }
-  sort_a.sort(function cmp(a, b){ //Sort sorted array
-    return a.scs-b.scs;0
-  });
+function wrong(name) { //Decreasing the success rate when the user gets a problem wrong
+    var i;
+    for (i = 0; i < groups[name].length; i++) {
+        dict[groups[name][i]].scs = Math.max(0, dict[groups[name][i]].scs - 2);
+    }
+    sort_a.sort(function cmp(a, b) { //Sort sorted array
+        return a.scs - b.scs; 0
+    });
 }
 
 function incrementCount() {
@@ -60,7 +62,7 @@ function incrementCount() {
     counter.setAttribute("count", a);
     counter.textContent = "Questions completed: " + a;
 
-    
+
     desc.style.visibility = "visible";
     answer = sort_a[0].correct;
     input2.style.visibility = "visible";
@@ -71,7 +73,7 @@ function incrementCount() {
         right(sort_a[0].term);
         correctDesc.textContent = "Correct!";
     } else {
-        //wrong(sort_a[0].term);
+        wrong(sort_a[0].term);
         desc.textContent = sort_a[0].def;
     }
 }
@@ -93,20 +95,16 @@ function updateQuestion() {
 }
 
 function c(a) {
-  console.log(a);
+    console.log(a);
 }
 
-var dict = []; //Always stays the same order. String-term key
-var sort_a = []; //Integer key. Updated sorted array
-var groups = [];
-
-function terms(success, name, definition, correct, answer, group){ 
-  this.scs = success; //Out of 100. 100 is highest success rate, 0 is lowest
-  this.term = name; 
-  this.def = definition;
-  this.correct = correct;
-  this.answer = answer;
-  this.group = group;
+function terms(success, name, definition, correct, answer, group) {
+    this.scs = success; //Out of 100. 100 is highest success rate, 0 is lowest
+    this.term = name;
+    this.def = definition;
+    this.correct = correct;
+    this.answer = answer;
+    this.group = group;
 }
 
 function addGroup() {
@@ -118,30 +116,30 @@ function addGroup() {
 
 function addQuestion() {
 
-  this.term = questionEditor.querySelector("input[name='question']").value;
-  this.def = questionEditor.querySelector("input[name='desc']").value;
-  this.group = questionEditor.querySelector(".select-group").value;
-  this.correct = parseInt(questionEditor.querySelector(".select-answer").value) - 1;
-  this.raw_answers = questionEditor.querySelectorAll("[name='option']");
-  this.answers = ['', '', '', '', ''];
-  for (var i = 0; i < 5; ++i) {
-      this.answers[i] = this.raw_answers[i].value;
-  }
-  var newQuestion = new terms(0, this.term, this.def, this.correct, this.answers, this.group);
+    this.term = questionEditor.querySelector("input[name='question']").value;
+    this.def = questionEditor.querySelector("input[name='desc']").value;
+    this.group = questionEditor.querySelector(".select-group").value;
+    this.correct = parseInt(questionEditor.querySelector(".select-answer").value) - 1;
+    this.raw_answers = questionEditor.querySelectorAll("[name='option']");
+    this.answers = ['', '', '', '', ''];
+    for (var i = 0; i < 5; ++i) {
+        this.answers[i] = this.raw_answers[i].value;
+    }
+    var newQuestion = new terms(0, this.term, this.def, this.correct, this.answers, this.group);
 
-  dict[this.term] = newQuestion;
+    dict[this.term] = newQuestion;
 
-  sort_a[sort_a.length] = newQuestion;
-  
-  add2Group(this.term, this.group);
+    sort_a[sort_a.length] = newQuestion;
 
-  //ARRAY DOES NOT STORE DUPLICATES
+    add2Group(this.term, this.group);
+
+    //ARRAY DOES NOT STORE DUPLICATES
 }
-function add2Group(term, group){
-	if(groups[group]==undefined){
-		groups[group] = [];
-		//alert(group);
-	}
+function add2Group(term, group) {
+    if (groups[group] == undefined) {
+        groups[group] = [];
+        //alert(group);
+    }
     groups[group].push(term);
 }
 
@@ -149,23 +147,22 @@ function add2Group(term, group){
 
 /*
 addGroup();
-
 //groups["Human"].push("Head");
 add2Group(add.term, add.group);
 c(groups)
 */
 
 function shuffle(array) { //Fisher-Yates Shuffle of sorted deck for initial randomization
-  var m = array.length, t, i;
+    var m = array.length, t, i;
 
-  while (m) {
+    while (m) {
 
-    i = Math.floor(Math.random() * m--);
+        i = Math.floor(Math.random() * m--);
 
-    t = array[m];
-    array[m] = array[i];
-    array[i] = t;
-  }
+        t = array[m];
+        array[m] = array[i];
+        array[i] = t;
+    }
 
-  return array;
+    return array;
 }
