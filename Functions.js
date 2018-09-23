@@ -24,13 +24,13 @@ input2.addEventListener("click", updateQuestion);
 function right(name) { //Updating the success rate when the user gets a problem right
     var i;
 
-    dict[name].scs += 2;
-    if (groups[dict[name].group] == undefined) {
+    name.scs += 2;
+    if (groups[name.group] == undefined) {
 
     } else {
-        for (i = 0, len = groups[dict[name].group].length; i < len; i++) {
+        for (i = 0, len = groups[name.group].length; i < len; i++) {
             //alert(i);
-            dict[groups[dict[name].group][i]].scs = Math.min(100, dict[groups[dict[name].group][i]].scs + 2);
+            dict[groups[name.group][i]].scs = Math.min(100, dict[groups[name.group][i]].scs + 2);
         }
     }
     sort_a.splice(0, 1); //deleting element from array that got right
@@ -41,17 +41,6 @@ function right(name) { //Updating the success rate when the user gets a problem 
 
     });
 
-}
-
-function wrong(name) { //Decreasing the success rate when the user gets a problem wrong
-    var i;
-    dict[name].scs -= 2;
-    for (i = 0; i < groups[name].length; i++) {
-        dict[groups[name][i]].scs = Math.max(0, dict[groups[name][i]].scs - 2);
-    }
-    sort_a.sort(function cmp(a, b) { //Sort sorted array
-        return a.scs - b.scs; 0
-    });
 }
 
 function incrementCount() {
@@ -69,10 +58,9 @@ function incrementCount() {
     //Good thing only happens when option is correct
     if (radio[answer].checked) {
         desc.textContent = sort_a[0].def;
-        right(sort_a[0].term);
+        right(sort_a[0]);
         correctDesc.textContent = "Correct!";
     } else {
-        wrong(sort_a[0].term);
         desc.textContent = sort_a[0].def;
     }
 }
