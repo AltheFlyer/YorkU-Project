@@ -1,3 +1,2 @@
 # YorkU-Project
-
-An attempt at something I guess.
+Flashcard program for studying with adjustments of flashcard frequency depending on mastery index. 
