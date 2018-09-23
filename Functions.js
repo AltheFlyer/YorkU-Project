@@ -23,7 +23,6 @@ input2.addEventListener("click", updateQuestion);
 
 function incrementCount() {
     c(sort_a);
-    console.log(counter.getAttribute("count"));
     a = parseInt(counter.getAttribute("count"));
     a += 1;
     counter.setAttribute("count", a);
@@ -31,7 +30,6 @@ function incrementCount() {
 
     
     desc.style.visibility = "visible";
-    c(sort_a[0].def);
     answer = sort_a[0].correct;
     input2.style.visibility = "visible";
     input.style.visibility = "hidden";
