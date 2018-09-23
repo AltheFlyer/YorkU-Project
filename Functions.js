@@ -21,6 +21,17 @@ questionSubmit.addEventListener("click", addQuestion);
 input.addEventListener("click", incrementCount);
 input2.addEventListener("click", updateQuestion);
 
+function right(name){ //Updating the success rate when the user gets a problem right
+  var i;
+  dict[name].scs -= 2;
+  for(i=0; i<groups[name].length; i++){
+    dict[groups[name][i]].scs = Math.max(0, dict[groups[name][i]].scs-2);
+  }
+  sort_a.sort(function cmp(a, b){ //Sort sorted array
+    return a.scs-b.scs;0
+  });
+}
+
 function incrementCount() {
     c(sort_a);
     a = parseInt(counter.getAttribute("count"));
@@ -36,6 +47,7 @@ function incrementCount() {
     //Good thing only happens when option is correct
     if (radio[answer].checked) {
         desc.textContent = sort_a[0].def;
+        right(sort_a[0].term);
         correctDesc.textContent = "Correct!";
     } else {
         desc.textContent = sort_a[0].def;
