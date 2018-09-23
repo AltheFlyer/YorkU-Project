@@ -42,8 +42,8 @@ function right(name){ //Updating the success rate when the user gets a problem r
 
 }
 
-function wrong(name){ //Decreasing the success rate when the user gets a problem wrong
-  var i;
+function wrong(name){ //Decreasing the success rate when the user gets a problem wrong 
+  var i; //TO BE FIXED
   dict[name].scs -= 2;
   for(i=0; i<groups[name].length; i++){
     dict[groups[name][i]].scs = Math.max(0, dict[groups[name][i]].scs-2);
@@ -71,7 +71,7 @@ function incrementCount() {
         right(sort_a[0].term);
         correctDesc.textContent = "Correct!";
     } else {
-        wrong(sort_a[0].term);
+        //wrong(sort_a[0].term);
         desc.textContent = sort_a[0].def;
     }
 }
