@@ -8,6 +8,7 @@ var questionSubmit = questionEditor.querySelector(".active");
 //Question progression
 var bigQuestion = document.querySelector(".question");
 var desc = document.querySelector(".description");
+var correctDesc = document.querySelector(".correct-response");
 var input = document.querySelector(".main .button-1");
 var input2 = document.querySelector(".main .button-2");
 
@@ -22,7 +23,6 @@ input2.addEventListener("click", updateQuestion);
 
 function incrementCount() {
     c(sort_a);
-    console.log(counter.getAttribute("count"));
     a = parseInt(counter.getAttribute("count"));
     a += 1;
     counter.setAttribute("count", a);
@@ -30,14 +30,13 @@ function incrementCount() {
 
     
     desc.style.visibility = "visible";
-    c(sort_a[0].def);
     answer = sort_a[0].correct;
     input2.style.visibility = "visible";
     input.style.visibility = "hidden";
     //Good thing only happens when option is correct
     if (radio[answer].checked) {
-        console.log("YES");
-        desc.textContent = sort_a[0].def + " Correct!";
+        desc.textContent = sort_a[0].def;
+        correctDesc.textContent = "Correct!";
     } else {
         desc.textContent = sort_a[0].def;
     }
@@ -49,6 +48,7 @@ function updateQuestion() {
     input2.style.visibility = "hidden";
     input.style.visibility = "visible";
     desc.style.visibility = "hidden";
+    correctDesc.textContent = "";
     for (var i = 0; i < 5; ++i) {
         radioText[i].textContent = sort_a[0].answer[i];
     }
@@ -82,7 +82,6 @@ function addQuestion() {
   this.term = questionEditor.querySelector("input[name='question']").value;
 
   this.def = questionEditor.querySelector("input[name='desc']").value;
-  console.log(this.def + "mynamjef");
 
   this.group = questionEditor.querySelector(".select-group").value;
     

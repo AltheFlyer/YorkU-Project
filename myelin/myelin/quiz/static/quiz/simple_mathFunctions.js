@@ -63,10 +63,10 @@ var sort_a = []; //Integer key. Updated sorted array
 var groups = [];
 
 //Add pre-made items
-dict[0] = new terms(2, "What is the powerhouse of the cell?", "The mitochondria", 2, ["No u", "Help", "The mitochondria", "Special", "Help agIN"]);
-sort_a[0] = new terms(2, "What is the powerhouse of the cell?", "The mitochondria", 2, ["No u", "Help", "The mitochondria", "Special", "Help agIN"]);
-dict[1] = new terms(2, "Who is Robert Hooke?", "The scientist", 4, ["No u", "Help", "The mitochondria", "Special", "A science guy"]);
-sort_a[1] = new terms(2, "Who is Robert Hooke?", "The scientist", 4, ["No u", "Help", "The mitochondria", "Special", "A science guy"]);
+dict[0] = new terms(2, "What is 5 * 8?", "5 * 8 = 40", 3, ["5", "8", "13", "40", "25"])
+sort_a[0] = new terms(2, "What is 5 * 8?", "5 * 8 = 40", 3, ["5", "8", "13", "40", "25"])
+dict[1] = new terms(2, "What is 5% of 40?", "5% of 40 is 2", 1, ["5", "2", "8", "10", "4"])
+sort_a[1] = new terms(2, "What is 5% of 40?", "5% of 40 is 2", 1, ["5", "2", "8", "10", "4"])
 
 function terms(success, name, definition, correct, answer){ 
   this.scs = success; //Out of 100
