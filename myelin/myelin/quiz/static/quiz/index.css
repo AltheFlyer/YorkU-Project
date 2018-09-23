@@ -50,6 +50,10 @@ body {
     border-right: 1px solid rgb(115, 255, 251);
 }
 
+.description {
+    visibility: hidden;
+}
+
 .choices {
     text-align: left;
     padding-left: 20px;

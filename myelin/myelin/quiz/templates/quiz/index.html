@@ -1,11 +1,10 @@
 ﻿<!DOCTYPE HTML>
 
-{% load static %}
-
+{% load static%}
 <html>
 	<head>
 		<meta charset="utf-8">
-		<link href="{% static 'quiz/index.css'%}" rel="stylesheet" type = "text/css">
+		<link href="{% static 'quiz/index.css' %}" rel="stylesheet" type = "text/css">
 	</head>
 	
     <body>
@@ -54,21 +53,22 @@
                     <h2 class="question">What is the mitochondria?</h2>
                     <p class="description">(A part of the cell)</p>
                     <div class="choices">
-                        <input type="radio" name="answer"> Choice a
+                        <input type="radio" name="answer"> <span class="radio">Choice a</span>
                         <br />
-                        <input type="radio" name="answer"> Choice b
+                        <input type="radio" name="answer"> <span class="radio">Choice b</span>
                         <br />
-                        <input type="radio" name="answer"> Choice c
+                        <input type="radio" name="answer"> <span class="radio">Choice c</span>
                         <br />
-                        <input type="radio" name="answer"> Choice d
+                        <input type="radio" name="answer"> <span class="radio">Choice d</span>
                         <br />
-                        <input type="radio" name="answer"> Choice e
+                        <input type="radio" name="answer"> <span class="radio">Choice e</span>
                     </div>
-                    <button>See answer</button>
+                    <button class="button-1">See answer</button>
+                    <button class="button-2">Next question</button>
                 </div>
 
                 <div class="progress content">
-                    <div class="counter">
+                    <div class="counter" count="0">
                         Questions completed: 0
                     </div>
                     <div class="all-status">
@@ -97,14 +97,21 @@
                 <h3>Add Questions</h3>
                 Enter Question: <input type="text" name="question" /><br />
                 Enter Description: <input type="text" name="desc" /><br />
-                Enter Option 1: <input type="text" name="option"/><br />
-                Enter Option 2: <input type="text" name="option"/><br />
-                Enter Option 3: <input type="text" name="option"/><br />
-                Enter Option 4: <input type="text" name="option"/><br />
-                Enter Option 5: <input type="text" name="option"/><br />
-                <select>
+                Enter Option 1: <input type="text" name="option" /><br />
+                Enter Option 2: <input type="text" name="option" /><br />
+                Enter Option 3: <input type="text" name="option" /><br />
+                Enter Option 4: <input type="text" name="option" /><br />
+                Enter Option 5: <input type="text" name="option" /><br />
+                <select class="select-group">
                     <option>Group A</option>
                     <option>Group B</option>
+                </select>
+                <select class="select-answer">
+                    <option num="1">1</option>
+                    <option num="2">2</option>
+                    <option num="3">3</option>
+                    <option num="4">4</option>
+                    <option num="5">5</option>
                 </select>
                 <br />
                 <input type="button" value="Add to group" class="active" />
@@ -112,6 +119,6 @@
 
         </div>
         <script src="{% static 'quiz/barFiller.js' %}"></script>
-        <script src="{% static 'quiz/inputValue.js' %}"></script>
+        <script src="{% static 'quiz/Functions.js' %}"></script>
     </body>
 </html>
