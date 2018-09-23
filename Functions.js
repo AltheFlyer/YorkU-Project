@@ -23,13 +23,23 @@ input2.addEventListener("click", updateQuestion);
 
 function right(name){ //Updating the success rate when the user gets a problem right
   var i;
+
   dict[name].scs += 2;
-  for(i=0; i<groups[name].length; i++){
-    dict[groups[name][i]].scs = Math.min(100, dict[groups[name][i]].scs+2);
+	if(groups[dict[name].group]==undefined) alert("UN");
+  for(i=0; i<groups[dict[name].group].length; i++){
+	//alert(i);
+    dict[groups[dict[name].group][i]].scs = Math.min(100, dict[groups[dict[name].group][i]].scs+2);
+
   }
+
+  sort_a.splice(0, 1); //deleting element from array that got right
+
   sort_a.sort(function cmp(a, b){ //Sort sorted array
+
     return a.scs-b.scs;0
+
   });
+
 }
 
 function wrong(name){ //Decreasing the success rate when the user gets a problem wrong
@@ -86,13 +96,13 @@ var dict = []; //Always stays the same order. String-term key
 var sort_a = []; //Integer key. Updated sorted array
 var groups = [];
 
-function terms(success, name, definition, correct, answer){ 
+function terms(success, name, definition, correct, answer, group){ 
   this.scs = success; //Out of 100. 100 is highest success rate, 0 is lowest
-  //this.num = n; //Index of dictionary
   this.term = name; 
   this.def = definition;
   this.correct = correct;
   this.answer = answer;
+  this.group = group;
 }
 
 function addGroup() {
@@ -101,33 +111,34 @@ function addGroup() {
     groups[this.name] = [];
 }
 
+
 function addQuestion() {
 
   this.term = questionEditor.querySelector("input[name='question']").value;
-
   this.def = questionEditor.querySelector("input[name='desc']").value;
-
   this.group = questionEditor.querySelector(".select-group").value;
-    
   this.correct = parseInt(questionEditor.querySelector(".select-answer").value) - 1;
   this.raw_answers = questionEditor.querySelectorAll("[name='option']");
   this.answers = ['', '', '', '', ''];
-
   for (var i = 0; i < 5; ++i) {
       this.answers[i] = this.raw_answers[i].value;
   }
+  var newQuestion = new terms(0, this.term, this.def, this.correct, this.answers, this.group);
 
-  var newQuestion = new terms(0, this.term, this.def, this.correct, this.answers);
   dict[this.term] = newQuestion;
-  sort_a[sort_a.length] = newQuestion;
-  //ARRAY DOES NOT STORE DUPLICATES
-  c(dict);
-  c(sort_a);
-}
 
+  sort_a[sort_a.length] = newQuestion;
+  
+  add2Group(this.term, this.group);
+
+  //ARRAY DOES NOT STORE DUPLICATES
+}
 function add2Group(term, group){
+	if(groups[group]==undefined){
+		groups[group] = [];
+		//alert(group);
+	}
     groups[group].push(term);
-    c(groups);
 }
 
 /**************Making terms*****************************************/
