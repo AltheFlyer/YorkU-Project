@@ -23,9 +23,9 @@ input2.addEventListener("click", updateQuestion);
 
 function right(name){ //Updating the success rate when the user gets a problem right
   var i;
-  dict[name].scs -= 2;
+  dict[name].scs += 2;
   for(i=0; i<groups[name].length; i++){
-    dict[groups[name][i]].scs = Math.max(0, dict[groups[name][i]].scs-2);
+    dict[groups[name][i]].scs = Math.min(100, dict[groups[name][i]].scs+2);
   }
   sort_a.sort(function cmp(a, b){ //Sort sorted array
     return a.scs-b.scs;0
@@ -36,7 +36,7 @@ function wrong(name){ //Decreasing the success rate when the user gets a problem
   var i;
   dict[name].scs -= 2;
   for(i=0; i<groups[name].length; i++){
-    dict[groups[name][i]].scs = Math.min(100, dict[groups[name][i]].scs+2);
+    dict[groups[name][i]].scs = Math.max(0, dict[groups[name][i]].scs-2);
   }
   sort_a.sort(function cmp(a, b){ //Sort sorted array
     return a.scs-b.scs;0
@@ -87,7 +87,7 @@ var sort_a = []; //Integer key. Updated sorted array
 var groups = [];
 
 function terms(success, name, definition, correct, answer){ 
-  this.scs = success; //Out of 100. 0 is highest success rate, 100 is lowest
+  this.scs = success; //Out of 100. 100 is highest success rate, 0 is lowest
   //this.num = n; //Index of dictionary
   this.term = name; 
   this.def = definition;
@@ -117,7 +117,7 @@ function addQuestion() {
       this.answers[i] = this.raw_answers[i].value;
   }
 
-  var newQuestion = new terms(100, this.term, this.def, this.correct, this.answers);
+  var newQuestion = new terms(0, this.term, this.def, this.correct, this.answers);
   dict[this.term] = newQuestion;
   sort_a[sort_a.length] = newQuestion;
   //ARRAY DOES NOT STORE DUPLICATES
