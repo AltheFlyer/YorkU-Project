@@ -78,13 +78,17 @@ function incrementCount() {
 
 function updateQuestion() {
     shuffle(sort_a);
-    bigQuestion.textContent = sort_a[0].term;
-    input2.style.visibility = "hidden";
-    input.style.visibility = "visible";
-    desc.style.visibility = "hidden";
-    correctDesc.textContent = "";
-    for (var i = 0; i < 5; ++i) {
-        radioText[i].textContent = sort_a[0].answer[i];
+    if (sort_a[0] !== undefined) {
+        bigQuestion.textContent = sort_a[0].term;
+        input2.style.visibility = "hidden";
+        input.style.visibility = "visible";
+        desc.style.visibility = "hidden";
+        correctDesc.textContent = "";
+        for (var i = 0; i < 5; ++i) {
+            radioText[i].textContent = sort_a[0].answer[i];
+        }
+    } else {
+        alert("No questions left!");
     }
 }
 
